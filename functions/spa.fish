@@ -4,5 +4,5 @@ function spa --argument env
   cp ~/.config/env/$env .env
   test -f ~/.config/env/global && cat ~/.config/env/global >> .env
   test -d node_modules || npm i
-  ./node_modules/.bin/nuxt spa
+  ./node_modules/.bin/nuxt --spa
 end

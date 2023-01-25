@@ -8,6 +8,6 @@ function spa -a env
     cp ~/.config/env/$env .env
     test -f ~/.config/env/global && cat ~/.config/env/global >> .env
   end    
-  test -d node_modules || npm i
+  test -d node_modules || npm i --prefer-offline
   ./node_modules/.bin/nuxt --spa
 end

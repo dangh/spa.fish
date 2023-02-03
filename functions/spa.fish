@@ -7,7 +7,11 @@ function spa -a env
   if test -n "$env"
     cp ~/.config/env/$env .env
     test -f ~/.config/env/global && cat ~/.config/env/global >> .env
-  end    
+  end
   test -d node_modules || npm i --prefer-offline
-  ./node_modules/.bin/nuxt --spa
+  if test -x ./node_modules/.bin/nuxi
+    ./node_modules/.bin/nuxi dev --spa
+  else
+    ./node_modules/.bin/nuxt --spa
+  end
 end

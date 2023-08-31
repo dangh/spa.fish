@@ -1,8 +1,13 @@
 function spa -a env
   test web = (basename $PWD) || return
-  if test -z "$env" -a ! -f .env
-    #infer stage from aws profile
-    set env (string lower -- (string replace -r '.*@' '' -- $AWS_PROFILE))
+  if test -z "$env"
+    if test -f .env
+      set env (string match -g -r '^STAGE=(?<env>\S+)' < .env
+    end
+    if test -z "$env"
+      #infer stage from aws profile
+      set env (string lower -- (string replace -r '.*@' '' -- $AWS_PROFILE))
+    end
   end
   if test -n "$env"
     cp ~/.config/env/$env .env

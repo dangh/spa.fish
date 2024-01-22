@@ -10,7 +10,12 @@ function spa -a env
     end
   end
   if test -n "$env"
-    cp ~/.config/env/$env .env
+    switch $PWD
+    case '*/admin/web'
+      cp ~/.config/env/admin/$env .env
+    case '*/web'
+      cp ~/.config/env/$env .env
+    end
     test -f ~/.config/env/global && cat ~/.config/env/global >> .env
   end
   test -d node_modules || npm i --prefer-offline

@@ -16,7 +16,10 @@ function spa -a env
             case '*/web'
                 cp ~/.config/env/$env .env
         end
-        test -f ~/.config/env/global && cat ~/.config/env/global >>.env
+        test -f ~/.config/env/global && begin
+            echo >>.env
+            cat ~/.config/env/global >>.env
+        end
     end
     test -d node_modules || npm i --prefer-offline
     if test -x ./node_modules/.bin/nuxi

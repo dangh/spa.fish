@@ -22,6 +22,7 @@ function spa -a env
         end
     end
     test -d node_modules || npm i --prefer-offline
+    string match -q '*mkcert*' <./package.json && npm run mkcert
     if test -x ./node_modules/.bin/nuxi
         ./node_modules/.bin/nuxi dev --spa
     else
